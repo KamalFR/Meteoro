@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using Unity.PlasticSCM.Editor.WebApi;
 
 public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textComponent;
+    [SerializeField] private Slider _slider;
 
     private void OnEnable()
     {
         ScoreManager.OnScorePoints += ChangeUIPoints;
+        ScoreManager.OnLevelUp += ResetSlider;
     }
 
     private void OnDisable()
     {
         ScoreManager.OnScorePoints -= ChangeUIPoints;
+        ScoreManager.OnLevelUp -= ResetSlider;
     }
     private void ChangeUIPoints(int val)
     {
         _textComponent.text = "" + ScoreManager.Instance.CurrentScore;
+        _slider.value += val;
+    }
+
+    private void ResetSlider()
+    {
+        _slider.value = 0.0001f;
+        _slider.maxValue = ScoreManager.Instance.ScoreAddiction;
+
     }
 
 }
