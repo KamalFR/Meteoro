@@ -8,7 +8,6 @@ public class ShipNormalAttack : MonoBehaviour
     [SerializeField] private GameObject bullet;
     private BaseForAttacks attack;
     private Rigidbody2D rb;
-    private ShipMovement movement;
     private ShipControl input;
     private bool cooldownEnd;
     private float timeForCooldown;
@@ -17,7 +16,6 @@ public class ShipNormalAttack : MonoBehaviour
     {
         attack = new BasicShot();
         rb = GetComponent<Rigidbody2D>();
-        movement = GetComponent<ShipMovement>();
         input = new ShipControl();
         cooldownEnd = true;
         time = 0f;
@@ -37,8 +35,7 @@ public class ShipNormalAttack : MonoBehaviour
     {
         if (cooldownEnd)
         {
-            attack.SetWhereShot(movement.GetLastMove());
-            attack.Attack(rb.transform.position, bullet);
+            attack.Attack(rb.transform.position, bullet, transform);
             cooldownEnd = false;
         }
     }

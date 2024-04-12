@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private static float speed = 5f;
+    private static float speed = 10f;
     private static float range = 4f;
     private Rigidbody2D rb;
     private Vector3 incialPosition;
@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);    
         }
     }
-    public void SetMovimento(Vector3 movimento)
+    public void SetMovimento()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = movimento * speed;
+        rb.velocity = transform.up * speed;
 
     }
     public float GetSpeed()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class ShipMovement : MonoBehaviour
 {
@@ -9,14 +10,16 @@ public class ShipMovement : MonoBehaviour
     private Rigidbody2D rb;
     private ShipControl input;
     private Vector3 lastMove;
-    //private bool change;
+    private bool rotate;
+    private bool move;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         input = new ShipControl();
         lastMove = new Vector3(1, 0, 0);
-        //change = false;
+        rotate = false;
+        move = false;
     }
     private void OnEnable()
     {
@@ -36,7 +39,23 @@ public class ShipMovement : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector3 movementDirection = context.ReadValue<Vector2>();
-        rb.velocity = new Vector3(movementDirection.x, movementDirection.y, 0f) * speed;
+        if (movementDirection.y == 0)
+        {
+            rb.velocity = Vector3.zero;
+            move = false;
+        }
+        else
+        {
+            move = true;
+        }
+            if (movementDirection.x != 0f)
+        {
+            rotate = true;
+        }
+        if (movementDirection.x == 0f)
+        {
+            rotate = false;
+        }
         SetLastMove(movementDirection);
     }
     private void SetLastMove(Vector3 movementDirection)
@@ -49,5 +68,38 @@ public class ShipMovement : MonoBehaviour
     public Vector3 GetLastMove()
     {
         return lastMove;
+    }
+    private void Rotate()
+    {
+        if(lastMove.x < 0)
+        {
+            GetComponent<Transform>().Rotate(0f, 0f, 1f);
+        }
+        else
+        {
+            GetComponent<Transform>().Rotate(0f, 0f, -1f);
+        }
+    }
+    private void Update()
+    {
+        if (rotate)
+        {
+            Rotate();
+        }
+        if (move)
+        {
+            Move();
+        }
+    }
+    private void Move()
+    {
+        if(lastMove.y > 0f)
+        {
+            rb.velocity = transform.up * speed;
+        }
+        else
+        {
+            rb.velocity = transform.up * speed*-1;
+        }
     }
 }
