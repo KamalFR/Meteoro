@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private static float speed = 5f;
-    private static float range = 4f;
+    private static float speed = 10f;
+    //private static float range = 4f;
     private Rigidbody2D rb;
-    private Vector3 incialPosition;
-    [SerializeField] private float inialBulletSpeed;
-    [SerializeField] private float inialBulletRange;
+    private float time;
+    /*[SerializeField] private float inialBulletSpeed;
+    [SerializeField] private float inialBulletRange;*/
     private void Awake()
     {
-        incialPosition = GetComponent<Transform>().position;
+        time = 0f;
     }
     private void FixedUpdate()
     {
-        if(Vector3.Distance(transform.position, incialPosition) >= range) 
+        time += Time.deltaTime;
+        if(time > 0.5f)
         {
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
-    public void SetMovimento(Vector3 movimento)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Inimigo")
+        {
+            collision.GetComponent<Meteor>().ReciveDamage(1);
+            Destroy(gameObject);
+        }
+    }
+    public void SetMovimento()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = movimento * speed;
+        rb.velocity = transform.up * speed;
 
     }
     public float GetSpeed()
@@ -35,12 +44,12 @@ public class Bullet : MonoBehaviour
     {
         speed = newSpeed;
     }
-    public float GetRange()
+    /*public float GetRange()
     {
         return range;
     }
     public void SetRange(float newRange)
     {
         range = newRange;
-    }
+    }*/
 }
