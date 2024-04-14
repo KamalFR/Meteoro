@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BasicShot : BaseForAttacks
 {
-    [SerializeField] private GameObject bullet;
     private GameObject lastShot;
     public override void Attack(Vector3 position, GameObject bullet, Transform shipTransform)
     {

@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class ShipNormalAttack : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
-    private BaseForAttacks attack;
+    [SerializeField] private BaseForAttacks attack;
     private Rigidbody2D rb;
     private ShipControl input;
     private bool cooldownEnd;
     private float timeForCooldown;
     private float time;
+    public bool change;
+    public int apagarDepois;
     private void Awake()
     {
         attack = new BasicShot();
@@ -50,6 +52,10 @@ public class ShipNormalAttack : MonoBehaviour
                 time = 0f;
             }
         }
+        if (change)
+        {
+            ChangeShootT();
+        }
     }
     public float GetTimeForCooldown()
     {
@@ -58,5 +64,32 @@ public class ShipNormalAttack : MonoBehaviour
     public void SetTimeForCooldown(float newTime)
     {
         timeForCooldown = newTime;
+    }
+    private void ChangeShootT()
+    {
+        if(apagarDepois == 1)
+        {
+            attack = new BasicShot();
+        }
+        if (apagarDepois == 2)
+        {
+            attack = new DoubleShoot();
+        }
+        if (apagarDepois == 3)
+        {
+            attack = new TripleShoot();
+        }
+        if (apagarDepois == 4)
+        {
+            attack = new QuadrupleShoot();
+        }
+        if (apagarDepois == 5)
+        {
+            attack = new QuintupleShoot();
+        }
+    }
+    public void ChangeShoot(BaseForAttacks newAttack)
+    {
+        attack = newAttack;
     }
 }

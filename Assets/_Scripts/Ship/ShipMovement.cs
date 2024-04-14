@@ -48,11 +48,11 @@ public class ShipMovement : MonoBehaviour
         {
             move = true;
         }
-            if (movementDirection.x != 0f)
+        if (movementDirection.x != 0f)
         {
             rotate = true;
         }
-        if (movementDirection.x == 0f)
+        else
         {
             rotate = false;
         }
@@ -73,11 +73,11 @@ public class ShipMovement : MonoBehaviour
     {
         if(lastMove.x < 0)
         {
-            GetComponent<Transform>().Rotate(0f, 0f, 1f);
+            GetComponent<Transform>().Rotate(0f, 0f, 2f);
         }
         else
         {
-            GetComponent<Transform>().Rotate(0f, 0f, -1f);
+            GetComponent<Transform>().Rotate(0f, 0f, -2f);
         }
     }
     private void Update()
