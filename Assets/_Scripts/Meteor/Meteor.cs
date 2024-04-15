@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Assertions.Must;
+
 public class Meteor : MonoBehaviour
 {
     [SerializeField] private int meteorHealth;
@@ -18,6 +20,28 @@ public class Meteor : MonoBehaviour
         aux.z = 0f;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = aux * speed;
+
+    }
+
+    private void Start()
+    {
+        var angle = (Vector3.Angle(transform.right, rb.velocity));
+
+        if (rb.velocity.y <= 0f)
+        {
+            if (angle >= 0)
+                transform.Rotate(0f, 0f, -angle + 180f);
+            if (angle < 0)
+                transform.Rotate(0f, 0f, angle + 90f);
+        } 
+        else
+        {
+            if (angle >= 0)
+                transform.Rotate(0f, 0f, angle + 180f);
+            if (angle < 0)
+                transform.Rotate(0f, 0f, -angle + 90f);
+        }
+
     }
     private void Update()
     {
