@@ -6,7 +6,8 @@ public class ShipHealth : MonoBehaviour
 {
     [SerializeField] private int inicialHealth;
     private int health;
-    private void Start()
+    public int Health => health;
+    private void Awake()
     {
         health = inicialHealth;
     }
@@ -22,5 +23,6 @@ public class ShipHealth : MonoBehaviour
     public void ReciveDamage()
     {
         health--;
+        ShipHealthUI.OnChangeHealth?.Invoke(health);
     }
 }
