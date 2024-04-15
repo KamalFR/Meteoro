@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8055939558219565124}
   - component: {fileID: 6651899901623431770}
   - component: {fileID: 1254970507590407302}
+  - component: {fileID: 7319987818846264355}
   m_Layer: 0
   m_Name: Meteor
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,4 +165,17 @@ MonoBehaviour:
   meteorHealth: 2
   multiplicate: 1
   newMeteor: {fileID: 2104734203909870929}
-  speed: 2
+  speed: 5
+--- !u!114 &7319987818846264355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104734203909870929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0eb6ac22ea937409dbf12eddd00af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointsValue: 10

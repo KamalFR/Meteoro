@@ -10,7 +10,7 @@ public class GameManager : SingletonTemplate<GameManager>
     [SerializeField] private int healthIncrease;
     [SerializeField] private float velocityIncrease;
     private int _currentLevel = 0;
-    private GameObject _playerReference;
+    [SerializeField] private GameObject _playerReference;
     private GameObject _powerSelectionUI;
 
     public int CurrentLevel => _currentLevel;
@@ -65,7 +65,6 @@ public class GameManager : SingletonTemplate<GameManager>
         ResumeGame();
 
     }
-
     public void AddRocketShot()
     {
         ShipMissileAttack shipMissile = _playerReference.GetComponent<ShipMissileAttack>();
