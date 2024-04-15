@@ -9,6 +9,10 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textComponent;
     [SerializeField] private Slider _slider;
 
+    private void Start()
+    {
+        _slider.maxValue = ScoreManager.Instance.ScoreAddiction;
+    }
     private void OnEnable()
     {
         ScoreManager.OnScorePoints += ChangeUIPoints;

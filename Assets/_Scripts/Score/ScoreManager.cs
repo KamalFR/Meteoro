@@ -18,6 +18,7 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
     public int CurrentScore => _currentScore;
     public int ScoreToLevelUp => _scoreToLevelUp;
     public int ScoreAddiction => _scoreAddiction;
+    public float ScoreAddictionMultiplicativeFactor => _scoreAddictionMultiplicativeFactor;
 
 
     #region STATIC_ACTIONS

@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private static float speed = 10f;
-    private static float range = 4f;
+    [SerializeField] private float speed = 10f;
+    public static int bulletDamage; //o valor é definido na classe TurretControl
     private Rigidbody2D rb;
-    private Vector3 incialPosition;
-    [SerializeField] private float inialBulletSpeed;
-    [SerializeField] private float inialBulletRange;
+    private float time;
     private void Awake()
     {
-        incialPosition = GetComponent<Transform>().position;
+        time = 0f;
     }
     private void FixedUpdate()
     {
-        if(Vector3.Distance(transform.position, incialPosition) >= range) 
+        time += Time.deltaTime;
+        if(time > 0.5f)
         {
-            Destroy(gameObject);    
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Inimigo")
+        {
+            collision.GetComponent<Meteor>().ReciveDamage(bulletDamage);
+            Destroy(gameObject);
         }
     }
     public void SetMovimento()
@@ -27,20 +34,20 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed;
 
     }
-    public float GetSpeed()
+    /*public float GetSpeed()
     {
         return speed;
     }
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
-    }
-    public float GetRange()
+    }*/
+    /*public float GetRange()
     {
         return range;
     }
     public void SetRange(float newRange)
     {
         range = newRange;
-    }
+    }*/
 }

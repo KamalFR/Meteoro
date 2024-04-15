@@ -3,39 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShipNormalAttack : MonoBehaviour
+public class ShipMissileAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
-    private BaseForAttacks attack;
+    [SerializeField] private GameObject missile;
+    private MissileControl rocket;
     private Rigidbody2D rb;
     private ShipControl input;
     private bool cooldownEnd;
-    private float timeForCooldown;
     private float time;
     private void Awake()
     {
-        attack = new BasicShot();
+        rocket = new MissileControl();
         rb = GetComponent<Rigidbody2D>();
         input = new ShipControl();
         cooldownEnd = true;
         time = 0f;
-        timeForCooldown = 1f;
     }
     private void OnEnable()
     {
         input.Enable();
-        input.Ship.NormalAttack.performed += OnAttack;
+        input.Ship.RocketAttack.performed += OnAttack;
     }
     private void OnDisable()
     {
         input.Disable();
-        input.Ship.NormalAttack.performed -= OnAttack;
+        input.Ship.RocketAttack.performed -= OnAttack;
     }
     private void OnAttack(InputAction.CallbackContext context)
     {
         if (cooldownEnd)
         {
-            attack.Attack(rb.transform.position, bullet, transform);
+            rocket.Attack(rb.transform.position, missile, transform);
             cooldownEnd = false;
         }
     }
@@ -44,19 +42,15 @@ public class ShipNormalAttack : MonoBehaviour
         if (!cooldownEnd)
         {
             time += Time.deltaTime;
-            if (time >= timeForCooldown)
+            if (time >= rocket.GetTimeForCooldown())
             {
                 cooldownEnd = true;
                 time = 0f;
             }
         }
     }
-    public float GetTimeForCooldown()
+    public void UpgradeMissile()
     {
-        return timeForCooldown;
-    }
-    public void SetTimeForCooldown(float newTime)
-    {
-        timeForCooldown = newTime;
+        rocket.UpgradeMissile();
     }
 }
