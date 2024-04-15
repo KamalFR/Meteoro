@@ -11,7 +11,7 @@ public class ShipBeam : MonoBehaviour
     private bool cooldownEnd;
     private float time;
     private int level;
-    private void Awake()
+    private void OnEnable()
     {
         cooldownEnd = true;
         time = 0f;
