@@ -11,7 +11,7 @@ public class ScoreUI : MonoBehaviour
 
     private void Start()
     {
-        _slider.maxValue = ScoreManager.Instance.ScoreToLevelUp;
+        _slider.maxValue = ScoreManager.Instance.ScoreAddiction;
     }
     private void OnEnable()
     {
@@ -33,7 +33,7 @@ public class ScoreUI : MonoBehaviour
     private void ResetSlider()
     {
         _slider.value = 0.0001f;
-        _slider.maxValue = ScoreManager.Instance.ScoreToLevelUp;
+        _slider.maxValue = ScoreManager.Instance.ScoreAddiction;
 
     }
 

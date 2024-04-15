@@ -7,6 +7,7 @@ using System;
 public class ShipMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float RotationSpeed = 2f;
     private Rigidbody2D rb;
     private ShipControl input;
     private Vector3 lastMove;
@@ -73,11 +74,11 @@ public class ShipMovement : MonoBehaviour
     {
         if(lastMove.x < 0)
         {
-            GetComponent<Transform>().Rotate(0f, 0f, 2f);
+            GetComponent<Transform>().Rotate(0f, 0f, RotationSpeed);
         }
         else
         {
-            GetComponent<Transform>().Rotate(0f, 0f, -2f);
+            GetComponent<Transform>().Rotate(0f, 0f, (-1 * RotationSpeed));
         }
     }
     private void Update()
