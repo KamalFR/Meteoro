@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreToLevelUp: 100
-  _scoreAddiction: 50
+  _scoreAddiction: 150
   _scoreAddictionMultiplicativeFactor: 1.8
