@@ -9,7 +9,7 @@ public class TeleportNorte : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         aux = collision.transform.position;
-        aux.y -= 4.4f * 2;
+        aux.y = (aux.y * -1f) + 1.2f;
         collision.transform.position = aux;
     }
 }

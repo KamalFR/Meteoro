@@ -8,7 +8,7 @@ public class TeleportLeste : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         aux = collision.transform.position;
-        aux.x -= 8.3f*2;
+        aux.x = (aux.x * -1f) + 1.2f;
         collision.transform.position = aux;
     }
 }
