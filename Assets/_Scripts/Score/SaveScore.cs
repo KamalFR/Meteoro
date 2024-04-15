@@ -6,6 +6,9 @@ using UnityEngine;
 public class SaveScore : SingletonTemplate<SaveScore>
 {
     public static Action<int> OnSaveScore;
+
+    private int currentScore = 0;
+    public int CurrentScore => currentScore;
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +24,7 @@ public class SaveScore : SingletonTemplate<SaveScore>
     private void SaveMaxScore(int val)
     {
         var max = LoadMaxScore();
+        currentScore = val;
 
         if(max < val)               
             PlayerPrefs.SetInt("MaxScore", val);
@@ -32,5 +36,6 @@ public class SaveScore : SingletonTemplate<SaveScore>
         else 
             return 0;
     }
+
 
 }
