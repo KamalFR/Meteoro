@@ -20,4 +20,9 @@ public class MasterMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void ScoreMenu()
+    {
+        SceneManager.LoadScene("HighScoreScene");
+    }
+
 }

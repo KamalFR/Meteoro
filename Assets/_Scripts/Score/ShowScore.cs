@@ -18,8 +18,8 @@ public class ShowScore : MonoBehaviour
 
     private void SetScoreValues()
     {
-        highScore = SaveScore.Instance.LoadMaxScore();
-        score = SaveScore.Instance.CurrentScore;
+        highScore = SaveScore.LoadMaxScore();
+        score = SaveScore.CurrentScore;
 
         currentScoreText.text = score + "";
         highScoreText.text = highScore + "";

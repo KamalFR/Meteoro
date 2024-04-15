@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipHealth : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class ShipHealth : MonoBehaviour
     {
         if(health <= 0)
         {
+            SceneManager.LoadScene("HighScoreScene");
+            SaveScore.OnSaveScore?.Invoke(ScoreManager.Instance.CurrentScore);
             Destroy(gameObject);
         }
     }

@@ -7,11 +7,16 @@ public class SaveScore : SingletonTemplate<SaveScore>
 {
     public static Action<int> OnSaveScore;
 
-    private int currentScore = 0;
-    public int CurrentScore => currentScore;
+    private static int currentScore = 0;
+    public static int CurrentScore => currentScore;
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
+        currentScore = 0;
     }
     private void OnEnable()
     {
@@ -29,7 +34,7 @@ public class SaveScore : SingletonTemplate<SaveScore>
         if(max < val)               
             PlayerPrefs.SetInt("MaxScore", val);
     }
-    public int LoadMaxScore()
+    public static int LoadMaxScore()
     {
         if (PlayerPrefs.HasKey("MaxScore"))
             return PlayerPrefs.GetInt("MaxScore");

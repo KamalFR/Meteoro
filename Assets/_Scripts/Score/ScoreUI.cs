@@ -12,6 +12,7 @@ public class ScoreUI : MonoBehaviour
     private void Start()
     {
         _slider.maxValue = ScoreManager.Instance.ScoreToLevelUp;
+        ChangeUIPoints(0);
     }
     private void OnEnable()
     {

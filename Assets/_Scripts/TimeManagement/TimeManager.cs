@@ -8,6 +8,7 @@ public class TimeManager : SingletonTemplate<TimeManager>
 
     [SerializeField] private float _timeToIncreaseLevel = 40f;
     [SerializeField] private float _timeAddiction = 60f;
+    private float baseTime;
     [SerializeField] private float _scoreAddictionMultiplicaticeFactor = 1.3f;
     private float _timeForNextEvent;
     [SerializeField] [Range(0f, .8f)] private float _eventTime = .5f;
@@ -25,6 +26,12 @@ public class TimeManager : SingletonTemplate<TimeManager>
     {
         base.Awake();
         _timeForNextEvent = _timeToIncreaseLevel * _eventTime;
+        baseTime = _timeAddiction;
+    }
+    private void Start()
+    {
+        _currentTime = 0f;
+        _timeAddiction = baseTime;
     }
 
     private void OnEnable()
