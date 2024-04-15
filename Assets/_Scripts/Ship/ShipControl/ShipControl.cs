@@ -44,6 +44,15 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RocketAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""605ec9d5-ff03-43dd-8e30-68052b22a425"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
                     ""action"": ""NormalAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbe8f9f1-9aa6-44d3-bdf2-850a160f4aeb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RocketAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
         m_Ship_NormalAttack = m_Ship.FindAction("NormalAttack", throwIfNotFound: true);
+        m_Ship_RocketAttack = m_Ship.FindAction("RocketAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +206,14 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
     private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
     private readonly InputAction m_Ship_Move;
     private readonly InputAction m_Ship_NormalAttack;
+    private readonly InputAction m_Ship_RocketAttack;
     public struct ShipActions
     {
         private @ShipControl m_Wrapper;
         public ShipActions(@ShipControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Ship_Move;
         public InputAction @NormalAttack => m_Wrapper.m_Ship_NormalAttack;
+        public InputAction @RocketAttack => m_Wrapper.m_Ship_RocketAttack;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +229,9 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
             @NormalAttack.started += instance.OnNormalAttack;
             @NormalAttack.performed += instance.OnNormalAttack;
             @NormalAttack.canceled += instance.OnNormalAttack;
+            @RocketAttack.started += instance.OnRocketAttack;
+            @RocketAttack.performed += instance.OnRocketAttack;
+            @RocketAttack.canceled += instance.OnRocketAttack;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -216,6 +242,9 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
             @NormalAttack.started -= instance.OnNormalAttack;
             @NormalAttack.performed -= instance.OnNormalAttack;
             @NormalAttack.canceled -= instance.OnNormalAttack;
+            @RocketAttack.started -= instance.OnRocketAttack;
+            @RocketAttack.performed -= instance.OnRocketAttack;
+            @RocketAttack.canceled -= instance.OnRocketAttack;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -237,5 +266,6 @@ public partial class @ShipControl: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnNormalAttack(InputAction.CallbackContext context);
+        void OnRocketAttack(InputAction.CallbackContext context);
     }
 }

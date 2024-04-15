@@ -18,10 +18,15 @@ public class SpawnManager : MonoBehaviour
 
     private GameObject[] meteorsAllowedToSpawn;
 
+    public enum SpecialEvent
+    {
+        NONE,
+        CHUVA_DE_METEORO,
+        METEOROS_ARMADOS,
+        METEOROS_TELEGUIADOS
+    };
     private SpecialEvent currentEvent = SpecialEvent.NONE;
     public SpecialEvent CurrentEvent => currentEvent;
-
-    private ScrollingBackgrond scrollingBackgrond;
 
 
     private void OnEnable()
@@ -32,11 +37,6 @@ public class SpawnManager : MonoBehaviour
     private void OnDisable()
     {
         TimeManager.OnEventTriggered -= ChangeCurrentEvent;
-    }
-
-    private void Awake()
-    {
-        scrollingBackgrond = FindObjectOfType<ScrollingBackgrond>();
     }
 
     private void Start()
@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         //OneventChangeUI.invoke(event)
-        scrollingBackgrond.ChangeBackgrond(currentEvent);
+        //OneventChangeBackgroundDefault.invoke(event)
 
     }
 

@@ -27,7 +27,7 @@ public class GameManager : SingletonTemplate<GameManager>
     private void Start()
     {
         _currentLevel = 0;
-        //_playerReference = FindObjectOfType<ShipMovement>().gameObject;
+        _playerReference = FindObjectOfType<ShipMovement>().gameObject;
     }
 
     private void OnEnable()
@@ -57,25 +57,38 @@ public class GameManager : SingletonTemplate<GameManager>
         _powerSelectionUI.transform.GetChild(0).gameObject.SetActive(true);
         PauseGame();
     }
-
     public void AddTripleShot()
     {
-        //var currentClass = _playerReference.GetComponent<ShipMovement>();
-        //if(!currentClass.enabled)
-        //enable
-        //else
-        //currentClass.AddPower(++) // controlado pela classe
+        ShipNormalAttack normalAttack = _playerReference.GetComponent<ShipNormalAttack>();
+        normalAttack.UpgradeTorret();
         ResumeGame();
 
     }
-
     public void AddRocketShot()
     {
+        ShipMissileAttack shipMissile = _playerReference.GetComponent<ShipMissileAttack>();
+        if (!shipMissile.enabled)
+        {
+            shipMissile.enabled = true;
+        }
+        else
+        {
+            shipMissile.UpgradeMissile();
+        }
         ResumeGame();
 
     }
     public void AddLaserShot()
     {
+        ShipBeam shipBeam = _playerReference.GetComponent<ShipBeam>();
+        if (!shipBeam.enabled)
+        {
+            shipBeam.enabled = true;
+        }
+        else
+        {
+            shipBeam.Upgrade();
+        }
         ResumeGame();
     }
 
