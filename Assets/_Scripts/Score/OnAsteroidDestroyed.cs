@@ -18,7 +18,7 @@ public class OnAsteroidDestroyed : MonoBehaviour
 
         _particles.transform.parent = null;
         _particles.Play();
-        Destroy(_particles, 1f);
+        Destroy(_particles.gameObject, 1f);
 
     }
 }
