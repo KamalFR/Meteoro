@@ -5,7 +5,7 @@ using UnityEngine;
 public class OnAsteroidDestroyed : MonoBehaviour
 {
     [SerializeField] private int _pointsValue;
-    private void OnDestroy()
+    private void OnDisable()
     {
                                        
         ScoreManager.OnScorePoints.Invoke((int)(_pointsValue * ScoreManager.Instance.ScoreAddictionMultiplicativeFactor));
