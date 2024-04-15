@@ -5,10 +5,12 @@ using UnityEngine;
 public class TeleportSouth : MonoBehaviour
 {
     private Vector3 aux;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         aux = collision.transform.position;
-        aux.y += 4.4f*2;
+        var nextTeleportCollider = FindObjectOfType<TeleportNorte>().GetComponent<Collider2D>();
+        aux.y = (aux.y * -1f) - 1.2f;
         collision.transform.position = aux;
     }
 }
