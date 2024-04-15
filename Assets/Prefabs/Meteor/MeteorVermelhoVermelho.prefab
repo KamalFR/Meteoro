@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e990e6bf50ab344798c307f8d5ab952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorHealth: 2
+  meteorHealth: 1
   multiplicate: 1
   newMeteor: {fileID: 8676071265677896099}
   speed: 5
@@ -181,7 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsValue: 10
-  _particles: {fileID: 0}
 --- !u!95 &5010883456483572179
 Animator:
   serializedVersion: 5
