@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : SingletonTemplate<GameManager>
 {
@@ -12,6 +13,8 @@ public class GameManager : SingletonTemplate<GameManager>
     private int _currentLevel = 0;
     private GameObject _playerReference;
     private GameObject _powerSelectionUI;
+
+
 
     public int CurrentLevel => _currentLevel;
     public int HealthIncrease => healthIncrease;
@@ -103,6 +106,5 @@ public class GameManager : SingletonTemplate<GameManager>
         Time.timeScale = 1f;
         _powerSelectionUI.transform.GetChild(0).gameObject.SetActive(false);
     }
-
 
 }

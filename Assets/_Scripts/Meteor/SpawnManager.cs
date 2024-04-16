@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -28,6 +28,11 @@ public class SpawnManager : MonoBehaviour
     private SpecialEvent currentEvent = SpecialEvent.NONE;
     public SpecialEvent CurrentEvent => currentEvent;
 
+    [Header("BACKGROUND")]
+    [SerializeField] private Image bgVermelho;
+    [SerializeField] private Image bgVerde;
+
+
 
     private void OnEnable()
     {
@@ -51,7 +56,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void ChangeNextEvent()
     {
-        var rng = Random.Range(0, 3);
+        var rng = UnityEngine.Random.Range(0, 3);
 
         switch (rng)
         {
@@ -67,7 +72,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         //OneventChangeUI.invoke(event)
-        //OneventChangeBackgroundDefault.invoke(event)
+        ChangeBackground(SpecialEvent.NONE);
 
     }
 
@@ -85,9 +90,25 @@ public class SpawnManager : MonoBehaviour
                 meteorsAllowedToSpawn = defaultMeteors; break;
         }
 
-        //OneventChangeBackground.invoke(event)
+        ChangeBackground(currentEvent);
 
     }
+
+    public void ChangeBackground(SpecialEvent specialEvent)
+    {
+        switch (specialEvent)
+        {
+            case SpecialEvent.NONE:
+                bgVerde.gameObject.SetActive(false); bgVermelho.gameObject.SetActive(false); break;
+            case SpecialEvent.METEOROS_ARMADOS:
+                bgVerde.gameObject.SetActive(true); bgVermelho.gameObject.SetActive(false); break;
+            case SpecialEvent.METEOROS_TELEGUIADOS:
+                bgVerde.gameObject.SetActive(false); bgVermelho.gameObject.SetActive(true); break;
+            case SpecialEvent.CHUVA_DE_METEORO:
+                bgVerde.gameObject.SetActive(true); bgVermelho.gameObject.SetActive(true); break;
+        }
+    }
+   
 
     public void MeteorLevelIncrese()
     {

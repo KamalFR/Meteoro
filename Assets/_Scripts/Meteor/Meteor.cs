@@ -67,9 +67,8 @@ public class Meteor : MonoBehaviour
             if (ScoreManager.Instance != null)
                 ScoreManager.OnScorePoints.Invoke((int)(_pointsValue * ScoreManager.Instance.ScoreAddictionMultiplicativeFactor));
 
-            _particles.transform.parent = null;
 
-            _particles.Play();
+            Instantiate(_particles, transform.position, Quaternion.identity);
 
             var child = GetComponentInChildren<AudioSource>();
             child.transform.parent = null;

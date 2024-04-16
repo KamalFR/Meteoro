@@ -7,11 +7,13 @@ public class MasterMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        ScoreManager.gameScene = false;
         SceneManager.LoadScene("MainGame");
     }
 
     public void MainMenu()
     {
+        ScoreManager.gameScene = false;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -22,6 +24,7 @@ public class MasterMenu : MonoBehaviour
 
     public void ScoreMenu()
     {
+        ScoreManager.gameScene = false;
         SceneManager.LoadScene("HighScoreScene");
     }
 

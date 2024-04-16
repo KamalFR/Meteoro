@@ -22,6 +22,8 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
     private int baseScoreAddiction;
     public float ScoreAddictionMultiplicativeFactor => _scoreAddictionMultiplicativeFactor;
 
+    public static bool gameScene = true;
+
 
     #region STATIC_ACTIONS
 
@@ -39,6 +41,8 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
         OnScorePoints -= ScorePoints;
         OnLevelUp -= SetNewLevelUpValues;
     }
+
+    
 
     protected override void Awake()
     {
@@ -58,6 +62,13 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
 
     public void ScorePoints(int val)
     {
+        if (!gameScene)
+        {
+            _currentScore = 0;
+            _scoreToLevelUp = baseScoreToLevelUp;
+            _scoreAddiction = baseScoreAddiction;
+            gameScene = true;
+        }
         _currentScore += val;
 
         if (_currentScore < _scoreToLevelUp)
