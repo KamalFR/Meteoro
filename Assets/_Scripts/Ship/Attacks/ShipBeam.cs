@@ -7,7 +7,8 @@ public class ShipBeam : MonoBehaviour
     [SerializeField] private float range = 4f;
     [SerializeField] private GameObject point;
     [SerializeField] private float cooldownTime = 2f;
-    [SerializeField] private int damage = 2; 
+    [SerializeField] private int damage = 2;
+    [SerializeField] private GameObject laserTexture;
     private bool cooldownEnd;
     private float time;
     private int level;
@@ -40,6 +41,8 @@ public class ShipBeam : MonoBehaviour
         {
             if (hit.transform.tag == "Inimigo")
             {
+                GameObject laser = Instantiate(laserTexture, transform.position, transform.rotation);
+                laser.GetComponent<SetLaser>().SetLaserSize(Vector3.Distance(hit.point, transform.position));
                 hit.transform.GetComponent<Meteor>().ReciveDamage(damage);
                 cooldownEnd = false;
             }
