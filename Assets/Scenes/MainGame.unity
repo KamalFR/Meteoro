@@ -1223,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728008623054269942, guid: b4175d1c7625f044c8b000a65e924311, type: 3}
       propertyPath: RotationSpeed
-      value: 1
+      value: 1.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1652,7 +1652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601909310401081452, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2898041147740664672, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
       propertyPath: m_Sprite
@@ -1732,7 +1732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7352923032517026205, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7365089663019988781, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
       propertyPath: m_AnchorMax.y
