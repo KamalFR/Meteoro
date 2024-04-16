@@ -1730,6 +1730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerSelectionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7352923032517026205, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7365089663019988781, guid: b4e90598eff022d47ba6da0239145d28, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
