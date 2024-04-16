@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Assertions.Must;
+using static UnityEngine.ParticleSystem;
 
 public class Meteor : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Meteor : MonoBehaviour
     [SerializeField] private int multiplicate;
     [SerializeField] private GameObject newMeteor;
     [SerializeField] private float speed;
+
+    [SerializeField] private int _pointsValue;
+    [SerializeField] private ParticleSystem _particles;
+
     private int health;
     private Vector3 aux;
     private Rigidbody2D rb;
@@ -58,6 +63,19 @@ public class Meteor : MonoBehaviour
                 meteor2.GetComponent<Meteor>().DecreaseMultiplicate();
                 meteor2.GetComponent<Meteor>().SetMeteorHealth(meteorHealth - 1);
             }
+
+            if (ScoreManager.Instance != null)
+                ScoreManager.OnScorePoints.Invoke((int)(_pointsValue * ScoreManager.Instance.ScoreAddictionMultiplicativeFactor));
+
+            _particles.transform.parent = null;
+
+            _particles.Play();
+
+            var child = GetComponentInChildren<AudioSource>();
+            child.transform.parent = null;
+            child.enabled = true;
+            child.Play();
+
             Destroy(gameObject);
         }
     }

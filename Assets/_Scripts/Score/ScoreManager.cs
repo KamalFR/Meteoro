@@ -17,7 +17,9 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
     private int _currentScore = 0;
     public int CurrentScore => _currentScore;
     public int ScoreToLevelUp => _scoreToLevelUp;
+    private int baseScoreToLevelUp;
     public int ScoreAddiction => _scoreAddiction;
+    private int baseScoreAddiction;
     public float ScoreAddictionMultiplicativeFactor => _scoreAddictionMultiplicativeFactor;
 
 
@@ -41,7 +43,17 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
     protected override void Awake()
     {
         base.Awake();
+        baseScoreToLevelUp = _scoreToLevelUp;
+        baseScoreAddiction = _scoreAddiction;
         //Preview(10);
+    }
+
+    private void Start()
+    {
+        _currentScore = 0;
+        _scoreToLevelUp = baseScoreToLevelUp;
+        _scoreAddiction = baseScoreAddiction;
+        ScorePoints(0);
     }
 
     public void ScorePoints(int val)
