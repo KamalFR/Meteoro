@@ -18,11 +18,13 @@ public class TimerUI : MonoBehaviour
     private void OnEnable()
     {
         TimeManager.OnTimeScale += ResetSlider;
+        TimeManager.OnResetTimer += ResetSlider;
     }
 
     private void OnDisable()
     {
        TimeManager.OnTimeScale -= ResetSlider;
+        TimeManager.OnResetTimer -= ResetSlider;
     }
 
     private void Update()

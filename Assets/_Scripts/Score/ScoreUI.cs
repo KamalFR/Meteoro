@@ -18,12 +18,20 @@ public class ScoreUI : MonoBehaviour
     {
         ScoreManager.OnScorePoints += ChangeUIPoints;
         ScoreManager.OnLevelUp += ResetSlider;
+        ScoreManager.OnResetScore += Reset;
     }
 
     private void OnDisable()
     {
         ScoreManager.OnScorePoints -= ChangeUIPoints;
         ScoreManager.OnLevelUp -= ResetSlider;
+        ScoreManager.OnResetScore -= Reset;
+    }
+
+    private void Reset()
+    {
+        _slider.value = 0.0001f;
+        _slider.maxValue = ScoreManager.Instance.ScoreAddiction; ;
     }
     private void ChangeUIPoints(int val)
     {

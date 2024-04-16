@@ -29,20 +29,29 @@ public class ScoreManager : SingletonTemplate<ScoreManager>
 
     public static Action<int> OnScorePoints;
     public static Action OnLevelUp;
+    public static Action OnResetScore;
 
     #endregion
     private void OnEnable()
     {
         OnScorePoints += ScorePoints;
         OnLevelUp += SetNewLevelUpValues;
+        OnResetScore += ResetScore;
     }
     private void OnDisable()
     {
         OnScorePoints -= ScorePoints;
         OnLevelUp -= SetNewLevelUpValues;
+        OnResetScore -= ResetScore;
     }
 
-    
+    private void ResetScore()
+    {
+        _currentScore = 0;
+        _scoreToLevelUp = baseScoreToLevelUp;
+        _scoreAddiction = baseScoreAddiction;
+        ScorePoints(0);
+    }
 
     protected override void Awake()
     {

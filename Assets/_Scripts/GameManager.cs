@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : SingletonTemplate<GameManager>
+public class GameManager : MonoBehaviour
 {
     [Header("ASTEROIDS RELATED")]
 
@@ -21,9 +21,9 @@ public class GameManager : SingletonTemplate<GameManager>
     public float VelocityIncrease => velocityIncrease;
 
     #region SETUP
-    protected override void Awake()
+    protected  void Awake()
     {
-        base.Awake();
+        
         _powerSelectionUI = GameObject.Find("PowerSelectionUI");
     }
 

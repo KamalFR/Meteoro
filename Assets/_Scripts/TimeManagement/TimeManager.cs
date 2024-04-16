@@ -22,6 +22,15 @@ public class TimeManager : SingletonTemplate<TimeManager>
 
     public static Action OnTimeScale;
     public static Action OnEventTriggered;
+
+    private static bool gameHasStarted = false;
+
+    public static Action OnResetTimer;
+
+    public static void StartGame(bool val)
+    {
+        gameHasStarted = val;
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -32,19 +41,33 @@ public class TimeManager : SingletonTemplate<TimeManager>
     {
         _currentTime = 0f;
         _timeAddiction = baseTime;
+        gameHasStarted = true;
     }
 
     private void OnEnable()
     {
         OnTimeScale += ScaleLevelUp;
+        OnResetTimer += ResetTimer;
+    }
+
+    private void ResetTimer()
+    {
+        _currentTime = 0f;
+        _timeAddiction = baseTime;
+        gameHasStarted = true;
     }
 
     private void OnDisable()
     {
         OnTimeScale -= ScaleLevelUp;
+        OnResetTimer -= ResetTimer;
     }
     void Update()
     {
+
+        if (!gameHasStarted)
+            return;
+
         _currentTime += Time.deltaTime;
 
         if (_currentTime < _timeForNextEvent)
